@@ -1,9 +1,13 @@
 <!doctype html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery.js"></script>
+
   <meta charset="UTF-8">
   <title>Skills-Javascript</title>
+
   <style>
+
     body {
       counter-reset: h3counter;
       font-family: sans-serif;
@@ -60,7 +64,12 @@
       display: inline-block;
       margin-right: 1em;
     }
+    .test {
+      background-color: blue;
+    }
   </style>
+
+
 </head>
 <body>
 
@@ -253,8 +262,16 @@
 </fieldset>
 
 <script>
-  // code here for above problem
-</script>
+ //  // code here for above problem
+ //  $(".tricky-to-find") returns a list; $(".tricky-to-find")[0] returns the first
+ // element of the list.
+
+  $($(".tricky-to-find")[0]).on("click", function(evt) {
+    alert("All your base are belong to us...");
+  })
+
+
+  </script>
 
 <div class="hint">
   <div>
@@ -281,6 +298,16 @@
 
 <script>
   // put your code here
+  $("#kittenz-rule").on("dblclick", function () {
+    $("#kittenz-rule").attr("src", "http://www.pwccwr.org/Images/Riosit.jpg");
+    } )
+
+
+
+
+
+
+
 </script>
 
 <div class="hint">
@@ -313,7 +340,16 @@
 </fieldset>
 
 <script>
+
+
   // put your code here
+  // note:  style attrib. was "display: inline" (or just not display: none)
+  // I'd need to hide image first .hide() for animation to work
+
+  $("#make-a-porcupine").on("click", function () {
+      setTimeout(function () {$("#cute-porcupine-image").slideDown(5000)}, 1000);
+  })
+
 </script>
 
 <div class="hint">
@@ -346,7 +382,35 @@
 
 <script>
   // put your code here
+
+$("#agreeable-form").on("submit", function (evt) {
+    var faveFood = $("#favorite-food-input").val();
+    $("#agreeable-text").append("I like ", faveFood, ", too. ");
+    evt.preventDefault();
+  })
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <div class="hint">
   <div>
