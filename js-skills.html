@@ -433,6 +433,7 @@ $("#agreeable-form").on("submit", function (evt) {
 </fieldset>
 
 <script>
+
   // create user click event to begin anonymous game function
   $("#play-guessing-game").on("click", function () {
 
@@ -499,40 +500,29 @@ $("#agreeable-form").on("submit", function (evt) {
 </fieldset>
 
 <script>
-  //  Need to add onclick event (for play button) that does a few things:
-  // 1. removes the disabled attribute from number input
-  // 2.  adds disabled attribute to button UNTIL the rightAnswer is guessed
-  // ( set playbutton.disabled = true but AFTER exit while loop set disabled = false)
-  // 3. appends the alert text (too high/low/congrats) to the number-guessing-msg div
-  //
 
-  // function getGuess(evt) {
-  //   evt.preventDefault();
-  //
-  //   // get the user's guess
-  //   var guess = $("#number-guessed").val();
-  //
-  //   // store as guess button alt attribute
-  //   $("try-this-number").attr("alt", guess);
-  // }
+  // this function stores the guess the user typed in as an alt attribute of the Guess button
+  function makeGuess(evt) {
+    evt.preventDefault();
 
-  function playGuessingGame() { // question - why "click" works here but not 'submit'?
+    // get the user's typed-in guess
+    var guess = $("#number-guessed").val();
+
+    // store as guess button alt attribute (my workaround since I don't
+    // know how else to get a value from click event.  Even when return a value)
+    $("#try-this-number").attr("alt", guess);
+  }
+
+  //  event listener to store the user's guess when the form is submitted
+  $("#guessing-game-2-form").on("submit", makeGuess);
+
+
+  function playGuessingGame() {
 
       // generate random number between 1-100.
       var answer = Math.floor(Math.random() * 100 + 1);
 
-      $("#try-this-number").on("click", function(evt) {
-        evt.preventDefault();
-
-        // get the user's guess
-        var guess = $("#number-guessed").val();
-
-        // store as guess button alt attribute
-        $("try-this-number").attr("alt", guess);
-      });
-
       guess = parseInt($("#try-this-number").attr("alt"));
-      console.log("stored guess is", guess);
 
        while (guess !== answer) {
 
@@ -543,15 +533,7 @@ $("#agreeable-form").on("submit", function (evt) {
             alert("Too high!  Try again.");
          }
 
-        $("#try-this-number").on("click", function(evt) {
-          evt.preventDefault();
 
-          // get the user's guess
-          var guess = $("#number-guessed").val();
-
-          // store as guess button alt attribute
-          $("try-this-number").attr("alt", guess);
-        });
 
         guess = parseInt($("#try-this-number").attr("alt"));
         console.log("stored guess is", guess);
@@ -636,12 +618,17 @@ $("#agreeable-form").on("submit", function (evt) {
       }
   }
 
+// when Button is clicked, for each prime number in PRIME_NUMBERS, add the
+// .prime-box div to the #prime-box-area div, set the background-color of the last .prime-box div created that matches
+// the current PRIME_NUMBERS index, and add current PRIME_NUMBER[i] to the last .prime-box div created
 
   $("#make-prime-boxes").on("click", function (evt) {
         for (var i = 0; i < PRIME_NUMBERS.length; i++) {
           $("#prime-box-area").append('<div class="prime-box"></div>');
-          $("#prime-box-area :last-child").attr("style", "background-color: " + PRIME_COLORS[i]).html(PRIME_NUMBERS[i]);
-}
+          $("#prime-box-area :last-child")
+            .attr("style","background-color: " + PRIME_COLORS[i])
+            .html(PRIME_NUMBERS[i]);
+        }
   });
 
 
