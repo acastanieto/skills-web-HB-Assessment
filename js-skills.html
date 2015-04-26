@@ -500,6 +500,7 @@ $("#agreeable-form").on("submit", function (evt) {
 </fieldset>
 
 <script>
+
 // When click Play button, disable play button and enable guess button and field
 $("#play-guessing-game-2").on("click", function(evt) {
     $("#number-guessed").removeAttr("disabled");
@@ -510,12 +511,11 @@ $("#play-guessing-game-2").on("click", function(evt) {
     $("#number-guessing-msg").html("Guess a number between 1 and 100");
   });
 
-  // Random number generated automatically for the first game (before you even click Play)
+  // Random number generated automatically for the first game (before click Play)
   var answer = Math.floor(Math.random() * 100 + 1);
 
   // Answer is logged for testing purposes
   console.log("The answer is", answer);
-
 
   //  When user clicks on Guess button, one round of the game starts
   $("#guessing-game-2-form").on("submit", function (evt) {
@@ -523,25 +523,28 @@ $("#play-guessing-game-2").on("click", function(evt) {
 
     var guess = $("#number-guessed").val();     // get the user's guess from the number input field
 
-      // if user guessed the wrong answer, she gets one of the hints below and
-      // can try again by entering a new answer and clicking the Guess button, which will
-      // trigger this function again.
+      // if user guessed the wrong answer, she gets one of the hints below
       if (guess < answer) {
-          alert("Too low!  Try again.");
+          $("#number-guessing-msg").html("Too low!  Try again. ");
+
       } else if (guess > answer) {
-          alert("Too high!  Try again.");
-       } else {
-         alert("Congratulations!  You guessed right!  Click Play to play again.")
+          $("#number-guessing-msg").html("Too high!  Try again. ");
+
+      } else {
+         $("#number-guessing-msg").html("Congratulations!  You guessed correctly!  Click Play to start over.");
+
          // if user guessed the answer, the Play button is enabled and the Guess button/field disabled
          // If the user clicks play, they'll be able to play a new game
          $("#number-guessed").attr("disabled", true);
          $("#try-this-number").attr("disabled", true);
          $("#play-guessing-game-2").removeAttr("disabled");
-         answer = Math.floor(Math.random() * 100 + 1);
-         console.log("The answer is", answer) // new answer is generated
-       }
 
-  });
+         answer = Math.floor(Math.random() * 100 + 1);
+         console.log("The answer is", answer); // new answer is generated
+      }
+
+  });  // user can try again by entering a new answer and clicking the Guess button, which will
+       // trigger this function again.
 
 
 
