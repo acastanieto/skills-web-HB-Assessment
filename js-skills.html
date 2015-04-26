@@ -506,27 +506,37 @@ $("#agreeable-form").on("submit", function (evt) {
   // 3. appends the alert text (too high/low/congrats) to the number-guessing-msg div
   //
 
+  function makeGuess(evt) { // question - why "click" orks here but not 'submit'?
+       var guess = parseInt($("#number-guessed").val());
+       evt.preventDefault();
+       return guess;
+     }
 
+  //  $("#try-this-number").on("click", function (evt) { // question - why "click"
+  //                                                     // works here but not 'submit'?
+  //       var guess = parseInt($("#number-guessed").val());
+  //       evt.preventDefault();
+  //       alert(guess);
+  //       return guess;
+  //     });
+function test() {
+  alert("blah");
+}
 
-   $("#try-this-number").on("click", function (evt) {
-        var guess = parseInt($("#number-guessed").val());
-        evt.preventDefault();
-        alert(guess);
-        return guess;
-      });// question: click works here
-      // but not submit; why not?
-
-
-  $("#play-guessing-game-2").on("click", function (evt) {
+  $("#play-guessing-game-2").on("click", function(evt) {
       $("#number-guessed").removeAttr("disabled");
       $("#try-this-number").removeAttr("disabled");
       $("#play-guessing-game-2").attr("disabled", true);
+
+      $("#try-this-number").attr("onclick", "return test()")
+
       // generate random number between 1-100.
       var rightAnswer = Math.floor(Math.random() * 100 + 1);
-
       // prompt the user for their first guess.
       $("#number-guessing-msg").append("Guess a number between 1 and 100");
 
+      // var newGuess = $("#try-this-number").on("click", makeGuess);
+      // console.log(newGuess);
 
       // while the guess does not equal the number,
       // while (guess !== rightAnswer) {
