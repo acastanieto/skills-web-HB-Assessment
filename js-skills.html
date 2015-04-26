@@ -192,7 +192,7 @@
     evt.preventDefault();
   }
 
-  alertForm.addEventListener('click', sendAlert);
+  alertForm.addEventListener('submit', sendAlert);
 
 </script>
 
@@ -440,6 +440,9 @@ $("#agreeable-form").on("submit", function (evt) {
       // generate random number between 1-100.
       var rightAnswer = Math.floor(Math.random() * 100 + 1);
 
+      // answer logged for testing purposes
+      console.log("The answer is", rightAnswer);
+
       // prompt the user for their first guess.
       var guess = parseInt(prompt("Guess a number between 1 and 100"));
 
@@ -509,13 +512,15 @@ $("#play-guessing-game-2").on("click", function(evt) {
 
     // prompt the user for their first guess.
     $("#number-guessing-msg").html("Guess a number between 1 and 100");
+
+    // Answer is logged for testing purposes
+    console.log("The answer is", answer);
+
   });
 
   // Random number generated automatically for the first game (before click Play)
   var answer = Math.floor(Math.random() * 100 + 1);
 
-  // Answer is logged for testing purposes
-  console.log("The answer is", answer);
 
   //  When user clicks on Guess button, one round of the game starts
   $("#guessing-game-2-form").on("submit", function (evt) {
@@ -539,8 +544,7 @@ $("#play-guessing-game-2").on("click", function(evt) {
          $("#try-this-number").attr("disabled", true);
          $("#play-guessing-game-2").removeAttr("disabled");
 
-         answer = Math.floor(Math.random() * 100 + 1);
-         console.log("The answer is", answer); // new answer is generated
+         answer = Math.floor(Math.random() * 100 + 1); // new answer is generated
       }
 
   });  // user can try again by entering a new answer and clicking the Guess button, which will
