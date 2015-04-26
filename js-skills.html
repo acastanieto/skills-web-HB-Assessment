@@ -510,33 +510,39 @@ $("#play-guessing-game-2").on("click", function(evt) {
     $("#number-guessing-msg").html("Guess a number between 1 and 100");
   });
 
+  // Random number generated automatically for the first game (before you even click Play)
   var answer = Math.floor(Math.random() * 100 + 1);
 
-  //  event listener to store the user's guess when the form is submitted
+  // Answer is logged for testing purposes
+  console.log("The answer is", answer);
+
+
+  //  When user clicks on Guess button, one round of the game starts
   $("#guessing-game-2-form").on("submit", function (evt) {
     evt.preventDefault();
-    console.log(answer)
 
-    var guess = $("#number-guessed").val();     // get the user's typed-in guess
+    var guess = $("#number-guessed").val();     // get the user's guess from the number input field
 
-
+      // if user guessed the wrong answer, she gets one of the hints below and
+      // can try again by entering a new answer and clicking the Guess button, which will
+      // trigger this function again.
       if (guess < answer) {
           alert("Too low!  Try again.");
       } else if (guess > answer) {
           alert("Too high!  Try again.");
        } else {
-         alert("Congratulations!  You guessed right!")
+         alert("Congratulations!  You guessed right!  Click Play to play again.")
+         // if user guessed the answer, the Play button is enabled and the Guess button/field disabled
+         // If the user clicks play, they'll be able to play a new game
          $("#number-guessed").attr("disabled", true);
          $("#try-this-number").attr("disabled", true);
          $("#play-guessing-game-2").removeAttr("disabled");
          answer = Math.floor(Math.random() * 100 + 1);
+         console.log("The answer is", answer) // new answer is generated
        }
 
   });
 
-
-
-      // $("#try-this-number").on("click", playGuessingGame);
 
 
 
