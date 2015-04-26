@@ -16,8 +16,6 @@ def index_page():
 def application_form():
     return render_template("application-form.html")
 
-# @app.route("/application", methods=["GET","POST"])
-# def application_confirmation():
 
 @app.route('/application', methods=["POST"])
 def application_confirmation():
