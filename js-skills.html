@@ -502,63 +502,99 @@ $("#agreeable-form").on("submit", function (evt) {
 <script>
 
   // this function stores the guess the user typed in as an alt attribute of the Guess button
-  function makeGuess(evt) {
-    evt.preventDefault();
-
-    // get the user's typed-in guess
-    var guess = $("#number-guessed").val();
-
-    // store as guess button alt attribute (my workaround since I don't
-    // know how else to get a value from click event.  Even when return a value)
-    $("#try-this-number").attr("alt", guess);
-  }
+  // function makeGuess(evt, answer) {
+  //   evt.preventDefault();
+  //
+  //   var guess = $("#number-guessed").val();     // get the user's typed-in guess
+  //
+  //   // $("#try-this-number").attr("alt", guess);      // store as guess button alt attribute
+  //   // (my workaround since I don't know how else to get a value from click event.
+  //   // Even when return a value)
+  //
+  //
+  //   // guess = parseInt($("#try-this-number").attr("alt"));
+  //
+  //
+  //   //  while (guess !== answer) {
+  //
+  //     // if guess too high or low ask the user to guess the number again.
+  //     if (guess < answer) {
+  //         alert("Too low!  Try again.");
+  //     } else if (guess > answer) {
+  //         alert("Too high!  Try again.");
+  //      } else {
+  //        alert("Congratulations!  You guessed right!")
+  //      }
+  //
+  //
+  // }
+  var answer = Math.floor(Math.random() * 100 + 1);
 
   //  event listener to store the user's guess when the form is submitted
-  $("#guessing-game-2-form").on("submit", makeGuess);
+  $("#guessing-game-2-form").on("submit", function (evt) {
+    evt.preventDefault();
+    console.log(answer)
+    
+    var guess = $("#number-guessed").val();     // get the user's typed-in guess
+
+    // $("#try-this-number").attr("alt", guess);      // store as guess button alt attribute
+    // (my workaround since I don't know how else to get a value from click event.
+    // Even when return a value)
 
 
-  function playGuessingGame() {
+    // guess = parseInt($("#try-this-number").attr("alt"));
+
+
+    //  while (guess !== answer) {
+
+      // if guess too high or low ask the user to guess the number again.
+      if (guess < answer) {
+          alert("Too low!  Try again.");
+      } else if (guess > answer) {
+          alert("Too high!  Try again.");
+       } else {
+         alert("Congratulations!  You guessed right!")
+       }
+
+
+  });
+
+
+  // function playGuessingGame() {
 
       // generate random number between 1-100.
-      var answer = Math.floor(Math.random() * 100 + 1);
-
-      guess = parseInt($("#try-this-number").attr("alt"));
-
-       while (guess !== answer) {
-
-        // if guess too high or low ask the user to guess the number again.
-        if (guess < answer) {
-            alert("Too low!  Try again.");
-        } else if (guess > answer) {
-            alert("Too high!  Try again.");
-         }
-
-
-
-        guess = parseInt($("#try-this-number").attr("alt"));
-        console.log("stored guess is", guess);
-
-      }
-
-      // when the user has guessed the number, can exit from while loop
-      // congratulate the user.
-      alert("Congratulations!  You guessed the right number!");
+      // var answer = Math.floor(Math.random() * 100 + 1);
+      //
+      // guess = parseInt($("#try-this-number").attr("alt"));
+      //
+      //
+      // //  while (guess !== answer) {
+      //
+      //   // if guess too high or low ask the user to guess the number again.
+      //   if (guess < answer) {
+      //       alert("Too low!  Try again.");
+      //   } else if (guess > answer) {
+      //       alert("Too high!  Try again.");
+      //    } else {
+      //      alert("Congratulations!  You guessed right!")
+      //    }
+      //
 
 
-     }
+    //  }
 
   $("#play-guessing-game-2").on("click", function(evt) {
       $("#number-guessed").removeAttr("disabled");
       $("#try-this-number").removeAttr("disabled");
       $("#play-guessing-game-2").attr("disabled", true);
 
-
       // store rightAnswer as alt attribute in Play button for easy access
       // $("#play-guessing-game").attr("alt", rightAnswer.toString());
 
       // prompt the user for their first guess.
       $("#number-guessing-msg").append("Guess a number between 1 and 100");
-      playGuessingGame;
+      var answer = Math.floor(Math.random() * 100 + 1);
+
     });
 
       // $("#try-this-number").on("click", playGuessingGame);
