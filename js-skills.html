@@ -390,28 +390,6 @@ $("#agreeable-form").on("submit", function (evt) {
   })
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="hint">
   <div>
     You're right&mdash;we didn't show you how to find the current value in an input field
@@ -455,7 +433,33 @@ $("#agreeable-form").on("submit", function (evt) {
 </fieldset>
 
 <script>
-  // put your code here
+  // create user click event to begin anonymous game function
+  $("#play-guessing-game").on("click", function () {
+
+      // generate random number between 1-100.
+      var rightAnswer = Math.floor(Math.random() * 100 + 1);
+
+      // prompt the user for their first guess.
+      var guess = parseInt(prompt("Guess a number between 1 and 100"));
+
+      // while the guess does not equal the number,
+      while (guess !== rightAnswer) {
+
+        // if guess too high or low prompt the user to guess the number.
+        if (guess < rightAnswer) {
+            guess = parseInt(prompt("Too low!  Try again."));
+        } else if (guess > rightAnswer) {
+            guess = parseInt(prompt("Too high!  Try again."));
+         }
+      }
+
+      // when the user has guessed the number, can exit from while loop
+      // congratulate the user.
+      alert("Congratulations!  You guessed the right number!");
+
+    })
+
+
 </script>
 
 <div class="hint">
@@ -495,7 +499,57 @@ $("#agreeable-form").on("submit", function (evt) {
 </fieldset>
 
 <script>
-  // put your code here
+  //  Need to add onclick event (for play button) that does a few things:
+  // 1. removes the disabled attribute from number input
+  // 2.  adds disabled attribute to button UNTIL the rightAnswer is guessed
+  // ( set playbutton.disabled = true but AFTER exit while loop set disabled = false)
+  // 3. appends the alert text (too high/low/congrats) to the number-guessing-msg div
+  //
+
+
+
+   $("#try-this-number").on("click", function (evt) {
+        var guess = parseInt($("#number-guessed").val());
+        evt.preventDefault();
+        alert(guess);
+        return guess;
+      });// question: click works here
+      // but not submit; why not?
+
+
+  $("#play-guessing-game-2").on("click", function (evt) {
+      $("#number-guessed").removeAttr("disabled");
+      $("#try-this-number").removeAttr("disabled");
+      $("#play-guessing-game-2").attr("disabled", true);
+      // generate random number between 1-100.
+      var rightAnswer = Math.floor(Math.random() * 100 + 1);
+
+      // prompt the user for their first guess.
+      $("#number-guessing-msg").append("Guess a number between 1 and 100");
+
+
+      // while the guess does not equal the number,
+      // while (guess !== rightAnswer) {
+
+
+
+      //   // if guess too high or low prompt the user to guess the number.
+      //   if (guess < rightAnswer) {
+      //       guess = parseInt(prompt("Too low!  Try again."));
+      //   } else if (guess > rightAnswer) {
+      //       guess = parseInt(prompt("Too high!  Try again."));
+      //    }
+      // }
+      //
+      // // when the user has guessed the number, can exit from while loop
+      // // congratulate the user.
+      // alert("Congratulations!  You guessed the right number!");
+
+
+
+  })
+
+
 </script>
 
 
