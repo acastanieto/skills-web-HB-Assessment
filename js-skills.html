@@ -506,11 +506,11 @@ $("#agreeable-form").on("submit", function (evt) {
   // 3. appends the alert text (too high/low/congrats) to the number-guessing-msg div
   //
 
-  function makeGuess(evt) { // question - why "click" orks here but not 'submit'?
-       var guess = parseInt($("#number-guessed").val());
-       evt.preventDefault();
-       return guess;
-     }
+  // function makeGuess(evt) { // question - why "click" orks here but not 'submit'?
+  //      var guess = parseInt($("#number-guessed").val());
+  //      evt.preventDefault();
+  //      return guess;
+  //    }
 
   //  $("#try-this-number").on("click", function (evt) { // question - why "click"
   //                                                     // works here but not 'submit'?
@@ -519,21 +519,38 @@ $("#agreeable-form").on("submit", function (evt) {
   //       alert(guess);
   //       return guess;
   //     });
-function test() {
-  alert("blah");
-}
+// function test() {
+//   alert("blah");
+// }
 
   $("#play-guessing-game-2").on("click", function(evt) {
       $("#number-guessed").removeAttr("disabled");
       $("#try-this-number").removeAttr("disabled");
       $("#play-guessing-game-2").attr("disabled", true);
 
-      $("#try-this-number").attr("onclick", "return test()")
-
       // generate random number between 1-100.
       var rightAnswer = Math.floor(Math.random() * 100 + 1);
       // prompt the user for their first guess.
       $("#number-guessing-msg").append("Guess a number between 1 and 100");
+
+      $("#try-this-number").on("click", function(evt) { // question - why "click" orks here but not 'submit'?
+           var guess = parseInt($("#number-guessed").val());
+           evt.preventDefault();
+           $("#try-this-number").attr("alt", guess.toString());
+           var guess = parseInt($("#try-this-number").attr("alt"));
+
+          //  var guess = parseInt(document.getElements("src"));
+           console.log(typeof(guess));
+         });
+
+      // var guess = $("#try-this-number").triggerHandler("click");
+//
+      // console.log(guess)
+      // var guess = $("#try-this-number").on("click", function (evt) { // question - why "click" orks here but not 'submit'?
+      //      var guess = parseInt($("#number-guessed").val());
+      //      evt.preventDefault();
+      //      return guess;
+      //    });
 
       // var newGuess = $("#try-this-number").on("click", makeGuess);
       // console.log(newGuess);
