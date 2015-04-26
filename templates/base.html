@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}TITLE GOES HERE{% endblock %}</title>
+    <link rel="stylesheet" href="../static/styles.css">
+  </head>
+  <body>
+      <h1>{% block header %}HEADER GOES HERE{% endblock %}</h1>
+      {% block body %}BODY GOES HERE{% endblock %}
+      <footer>Copyright 2015 Super Famous Company</footer>
+  </body>
+</html>

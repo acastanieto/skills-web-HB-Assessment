@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Job Application Form{% endblock %}
+{% block header %}Job Application{% endblock %}
+
+{% block body %}
+  <p>
+    Please fill out your information on this form and
+    submit it.  We will evaluate your application and
+    get back to you shortly.
+  </p>
+  <form action="/application" method="POST">
+
+    <label>First name:
+      <input type="text" name="first">
+    </label>
+
+    <label id="last-name">Last name:
+      <input type="text" name="last">
+    </label>
+
+    <label>Salary requirement:
+      <input type="number" name="salary">
+    </label>
+
+    <label>Which job are you applying for?
+      <select name="job">
+        <option value="Software Engineer">Software Engineer</option>
+        <option value="QA Engineer">QA Engineer</option>
+        <option value="Product Manager">Product Manager</option>
+      </select>
+    </label>
+
+    <input type="submit" value="Submit this form">
+
+  </form>
+
+{% endblock %}
