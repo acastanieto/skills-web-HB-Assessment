@@ -504,8 +504,16 @@ $("#agreeable-form").on("submit", function (evt) {
 
 <script>
 
-// When click Play button, disable play button and enable guess button and field
+// Random number generated automatically for the first game (before click Play)
+var answer = Math.floor(Math.random() * 100 + 1);
+
+// Event listener for click Play button:
 $("#play-guessing-game-2").on("click", function(evt) {
+
+    // Answer is logged for testing purposes
+    console.log("The answer is", answer);
+
+    // disable play button and enable guess button and field
     $("#number-guessed").removeAttr("disabled");
     $("#try-this-number").removeAttr("disabled");
     $("#play-guessing-game-2").attr("disabled", true);
@@ -513,13 +521,9 @@ $("#play-guessing-game-2").on("click", function(evt) {
     // prompt the user for their first guess.
     $("#number-guessing-msg").html("Guess a number between 1 and 100");
 
-    // Answer is logged for testing purposes
-    console.log("The answer is", answer);
+
 
   });
-
-  // Random number generated automatically for the first game (before click Play)
-  var answer = Math.floor(Math.random() * 100 + 1);
 
 
   //  When user clicks on Guess button, one round of the game starts
